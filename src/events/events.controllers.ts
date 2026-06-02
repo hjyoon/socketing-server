@@ -33,6 +33,7 @@ import { CreateSeatResponseDto } from './dto/create-seat-response.dto';
 import { UpdateSeatRequestDto } from './dto/update-seat-request.dto';
 import { UpdateSeatResponseDto } from './dto/update-seat-response.dto';
 import { CreateManySeatRequestDto } from './dto/create-many-seat-request.dto';
+import { swaggerExampleUrls } from 'src/config/swagger-example-urls';
 
 @ApiTags('Events')
 @Controller('events')
@@ -50,8 +51,7 @@ export class EventsController {
         data: {
           id: 'c672b08f-65df-48e8-a46e-389d18d87eda',
           title: '등록 테스트',
-          thumbnail:
-            'https://swjungle.net/static/hub/images/kaist_jungle_logo.png',
+          thumbnail: swaggerExampleUrls.eventLogo,
           place: '카이스트 문지캠퍼스 강의동 407호',
           cast: '정글 9기',
           ageLimit: 12,
@@ -124,7 +124,7 @@ export class EventsController {
           {
             id: 'ba1cdf2b-69ec-473f-a501-47a7b1e73602',
             title: 'Music Festival',
-            thumbnail: 'https://example.com/thumbnail.jpg',
+            thumbnail: swaggerExampleUrls.eventThumbnail,
             place: 'Central Park',
             cast: 'Famous Band',
             ageLimit: 18,
@@ -156,7 +156,7 @@ export class EventsController {
           {
             id: '0bf43d9c-4a03-4c8c-a972-759dc1f19a41',
             title: 'Music Festival',
-            thumbnail: 'https://example.com/thumbnail.jpg',
+            thumbnail: swaggerExampleUrls.eventThumbnail,
             place: 'Central Park',
             cast: 'Famous Band',
             ageLimit: 18,
@@ -221,7 +221,7 @@ export class EventsController {
         data: {
           id: 'd33ba96a-5d4f-4758-95b9-010334bf8523',
           title: 'Music Festival',
-          thumbnail: 'https://example.com/thumbnail.jpg',
+          thumbnail: swaggerExampleUrls.eventThumbnail,
           place: 'Central Park',
           cast: 'Famous Band',
           ageLimit: 18,
@@ -294,7 +294,7 @@ export class EventsController {
         data: {
           id: 'd33ba96a-5d4f-4758-95b9-010334bf8523',
           title: 'Music Festival',
-          thumbnail: 'https://example.com/thumbnail.jpg',
+          thumbnail: swaggerExampleUrls.eventThumbnail,
           place: 'Central Park',
           cast: 'Famous Band',
           ageLimit: 18,
@@ -421,7 +421,7 @@ export class EventsController {
         event: {
           id: 'event-id-123',
           title: 'The Phantom of the Opera',
-          thumbnail: 'https://example.com/phantom.jpg',
+          thumbnail: swaggerExampleUrls.eventThumbnail,
           place: 'Seoul Arts Center',
           cast: 'Kim Min-ji, Lee Jung-ho',
           ageLimit: 12,
@@ -735,8 +735,7 @@ export class EventsController {
             event: {
               id: 'c672b08f-65df-48e8-a46e-389d18d87eda',
               title: '등록 테스트',
-              thumbnail:
-                'https://swjungle.net/static/hub/images/kaist_jungle_logo.png',
+              thumbnail: swaggerExampleUrls.eventLogo,
               place: '카이스트 문지캠퍼스 강의동 407호',
               cast: '정글 9기',
               ageLimit: 12,
@@ -805,7 +804,7 @@ export class EventsController {
           event: {
             id: 'ba1cdf2b-69ec-473f-a501-47a7b1e73602',
             title: 'Music Festival',
-            thumbnail: 'https://example.com/thumbnail.jpg',
+            thumbnail: swaggerExampleUrls.eventThumbnail,
             place: 'Central Park',
             cast: 'Famous Band',
             ageLimit: 18,

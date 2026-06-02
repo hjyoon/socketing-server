@@ -16,6 +16,7 @@ import {
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CommonResponse } from 'src/common/dto/common-response.dto';
 import { ManagersService } from './manager.service';
+import { swaggerExampleUrls } from 'src/config/swagger-example-urls';
 
 @ApiTags('Managers')
 @Controller('managers/events')
@@ -33,8 +34,7 @@ export class ManagersController {
         data: {
           id: 'c672b08f-65df-48e8-a46e-389d18d87eda',
           title: '등록 테스트',
-          thumbnail:
-            'https://swjungle.net/static/hub/images/kaist_jungle_logo.png',
+          thumbnail: swaggerExampleUrls.eventLogo,
           place: '카이스트 문지캠퍼스 강의동 407호',
           cast: '정글 9기',
           ageLimit: 12,
@@ -152,7 +152,7 @@ export class ManagersController {
           {
             id: 'ba1cdf2b-69ec-473f-a501-47a7b1e73602',
             title: 'Music Festival',
-            thumbnail: 'https://example.com/thumbnail.jpg',
+            thumbnail: swaggerExampleUrls.eventThumbnail,
             place: 'Central Park',
             cast: 'Famous Band',
             ageLimit: 18,
@@ -184,7 +184,7 @@ export class ManagersController {
           {
             id: '0bf43d9c-4a03-4c8c-a972-759dc1f19a41',
             title: 'Music Festival',
-            thumbnail: 'https://example.com/thumbnail.jpg',
+            thumbnail: swaggerExampleUrls.eventThumbnail,
             place: 'Central Park',
             cast: 'Famous Band',
             ageLimit: 18,

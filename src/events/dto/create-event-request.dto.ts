@@ -1,5 +1,6 @@
 import { IsString, IsOptional, IsArray, IsInt } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { swaggerExampleUrls } from 'src/config/swagger-example-urls';
 
 export class CreateEventRequestDto {
   @ApiProperty({
@@ -11,7 +12,7 @@ export class CreateEventRequestDto {
 
   @ApiPropertyOptional({
     description: 'Thumbnail URL for the event',
-    example: 'https://example.com/thumbnail.jpg',
+    example: swaggerExampleUrls.eventThumbnail,
   })
   @IsOptional()
   @IsString()

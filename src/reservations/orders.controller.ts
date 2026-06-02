@@ -20,6 +20,7 @@ import { OrdersService } from './orders.service';
 import { FindAllOrderRequestDto } from './dto/find-all-order-request.dto';
 import { FindAllOrderResponseDto } from './dto/find-all-order-response.dto';
 import { FindOneOrderResponseDto } from './dto/find-one-order-response.dto';
+import { swaggerExampleUrls } from 'src/config/swagger-example-urls';
 
 @ApiTags('Orders')
 @Controller('orders')
@@ -49,7 +50,7 @@ export class OrdersController {
             eventDateId: 'c89abe90-fc33-47bf-bdc8-48a2dc5c767d',
             eventDate: '2024-12-10T05:17:00.000Z',
             eventTitle: '콜드 플레이 내한 공연',
-            eventThumbnail: 'https://image.jpg',
+            eventThumbnail: swaggerExampleUrls.orderThumbnail,
             eventPlace: '잠실 실내 경기장',
             eventCast: '콜드 플레이',
             eventAgeLimit: 12,
@@ -124,7 +125,7 @@ export class OrdersController {
           eventDateId: 'c89abe90-fc33-47bf-bdc8-48a2dc5c767d',
           eventDate: '2024-12-10T05:17:00.000Z',
           eventTitle: '배치 테스트',
-          eventThumbnail: 'https://image.jpg',
+          eventThumbnail: swaggerExampleUrls.orderThumbnail,
           eventPlace: '잠실 고척돔',
           eventCast: '넬',
           eventAgeLimit: 12,

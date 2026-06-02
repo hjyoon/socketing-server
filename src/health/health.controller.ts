@@ -5,6 +5,7 @@ import {
   HealthCheck,
   TypeOrmHealthIndicator,
 } from '@nestjs/terminus';
+import { ConfigService } from '@nestjs/config';
 
 @Controller('health')
 export class HealthController {
@@ -12,13 +13,18 @@ export class HealthController {
     private health: HealthCheckService,
     private http: HttpHealthIndicator,
     private db: TypeOrmHealthIndicator,
+    private configService: ConfigService,
   ) {}
 
   @Get()
   @HealthCheck()
   check() {
     return this.health.check([
-      () => this.http.pingCheck('nestjs-docs', 'https://docs.nestjs.com'),
+      () =>
+        this.http.pingCheck(
+          'http-healthcheck',
+          this.configService.getOrThrow<string>('HEALTHCHECK_HTTP_URL'),
+        ),
       () => this.db.pingCheck('database'),
     ]);
   }

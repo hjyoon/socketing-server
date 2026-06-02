@@ -77,6 +77,6 @@ async function bootstrap() {
     console.log('Worker process is ready.');
   }
 
-  console.log(`Application is running on: http://localhost:${port}`);
+  console.log(`Application is running on port ${port}`);
 }
 bootstrap();
