@@ -50,7 +50,7 @@ func many(db queryer, q string, args ...any) ([]map[string]any, error) {
 		return nil, err
 	}
 	defer rows.Close()
-	var out []map[string]any
+	out := []map[string]any{}
 	for rows.Next() {
 		var raw []byte
 		if err := rows.Scan(&raw); err != nil {
