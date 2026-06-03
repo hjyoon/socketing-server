@@ -10,6 +10,7 @@ type Config struct {
 	Port        string
 	JWTSecret   string
 	DBURL       string
+	RedisAddr   string
 	CORSOrigins []string
 }
 
@@ -19,6 +20,8 @@ func LoadConfig() Config {
 		Port:      port,
 		JWTSecret: env("JWT_SECRET", "my-jwt-secret"),
 		DBURL:     env("DB_URL", buildDBURL()),
+		RedisAddr: env("CACHE_HOST", "localhost") + ":" +
+			env("CACHE_PORT", "6379"),
 		CORSOrigins: splitList(
 			env("CORS_ALLOWED_ORIGINS", "*"),
 		),

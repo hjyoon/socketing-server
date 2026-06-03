@@ -9,9 +9,12 @@ func TestLoadConfigDefaultsAndEnv(t *testing.T) {
 	t.Setenv("PORT", "9000")
 	t.Setenv("JWT_SECRET", "secret")
 	t.Setenv("DB_URL", "postgres://x")
+	t.Setenv("CACHE_HOST", "redis")
+	t.Setenv("CACHE_PORT", "6380")
 	t.Setenv("CORS_ALLOWED_ORIGINS", "http://a, http://b")
 	cfg := LoadConfig()
-	if cfg.Port != "9000" || cfg.JWTSecret != "secret" || cfg.DBURL != "postgres://x" {
+	if cfg.Port != "9000" || cfg.JWTSecret != "secret" ||
+		cfg.DBURL != "postgres://x" || cfg.RedisAddr != "redis:6380" {
 		t.Fatalf("env config mismatch")
 	}
 	if len(cfg.CORSOrigins) != 2 || cfg.CORSOrigins[1] != "http://b" {

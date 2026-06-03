@@ -5,15 +5,21 @@ import (
 	"encoding/json"
 
 	"github.com/hjyoon/socketing-server/internal/api"
+	"github.com/redis/go-redis/v9"
 )
 
 type Postgres struct {
 	db     *sql.DB
 	secret string
+	cache  *redis.Client
 }
 
 func NewPostgres(db *sql.DB, secret string) *Postgres {
 	return &Postgres{db: db, secret: secret}
+}
+
+func (p *Postgres) SetRedis(cache *redis.Client) {
+	p.cache = cache
 }
 
 func (p *Postgres) Health() error {

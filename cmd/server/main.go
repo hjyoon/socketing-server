@@ -8,6 +8,7 @@ import (
 	"time"
 
 	_ "github.com/lib/pq"
+	"github.com/redis/go-redis/v9"
 
 	"github.com/hjyoon/socketing-server/internal/app"
 	"github.com/hjyoon/socketing-server/internal/store"
@@ -25,6 +26,9 @@ func main() {
 	}
 	defer db.Close()
 	st := store.NewPostgres(db, cfg.JWTSecret)
+	rc := redis.NewClient(&redis.Options{Addr: cfg.RedisAddr})
+	defer rc.Close()
+	st.SetRedis(rc)
 	if err := st.EnsureSchema(); err != nil {
 		log.Fatal(err)
 	}

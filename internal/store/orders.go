@@ -34,10 +34,20 @@ func (p *Postgres) CancelOrder(orderID, userID string) api.Error {
 	if canceled != nil {
 		return api.ErrCanceledOrder
 	}
+	seats, qerr := canceledSeats(tx, orderID)
+	if qerr != nil {
+		return api.ErrInternal
+	}
 	_, err = tx.Exec(`UPDATE "order" SET "canceledAt"=now() WHERE id=$1`, orderID)
 	if err != nil {
 		return api.ErrInternal
 	}
-	_, _ = tx.Exec(`UPDATE reservation SET "canceledAt"=now() WHERE "orderId"=$1`, orderID)
-	return noRow(tx.Commit(), api.ErrInternal)
+	if _, err = tx.Exec(`UPDATE reservation SET "canceledAt"=now() WHERE "orderId"=$1`, orderID); err != nil {
+		return api.ErrInternal
+	}
+	if e := noRow(tx.Commit(), api.ErrInternal); e != api.NoError {
+		return e
+	}
+	_ = p.publishCanceledSeats(seats)
+	return api.NoError
 }
