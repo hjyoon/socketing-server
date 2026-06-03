@@ -1,30 +1,20 @@
-FROM node:20-alpine AS deps
+FROM golang:1.25-alpine3.23 AS build
 
 WORKDIR /app
+RUN apk add --no-cache git
+COPY go.mod ./
+RUN go mod download
+COPY . .
+RUN CGO_ENABLED=0 go build -mod=mod \
+  -tags="netgo,osusergo" \
+  -trimpath \
+  -buildvcs=false \
+  -ldflags="-s -w" \
+  -o /socketing-server ./cmd/server
 
-COPY package*.json ./
-RUN npm ci --ignore-scripts
-
-FROM deps AS build
-
-COPY nest-cli.json tsconfig*.json ./
-COPY src ./src
-RUN npm run build
-
-FROM node:20-alpine AS runtime
+FROM gcr.io/distroless/static-debian12:nonroot
 
 WORKDIR /app
-
-ENV NODE_ENV=production
-
-COPY package*.json ./
-RUN npm ci --omit=dev --ignore-scripts \
-  && npm cache clean --force
-
-COPY --from=build /app/dist ./dist
-
+COPY --from=build /socketing-server /app/socketing-server
 EXPOSE 5000
-
-USER node
-
-CMD ["node", "dist/main.js"]
+ENTRYPOINT ["/app/socketing-server"]
