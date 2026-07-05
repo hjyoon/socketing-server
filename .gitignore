@@ -1,5 +1,7 @@
 go.sum
 coverage.out
 .env
+.env.*
+!.env.example
 tmp/
 bin/
